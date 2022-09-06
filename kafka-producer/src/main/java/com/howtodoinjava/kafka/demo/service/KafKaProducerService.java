@@ -10,22 +10,18 @@ import com.howtodoinjava.kafka.demo.common.AppConstants;
 import com.howtodoinjava.kafka.demo.model.User;
 
 @Service
-public class KafKaProducerService 
-{
-	private static final Logger logger = 
-			LoggerFactory.getLogger(KafKaProducerService.class);
-	
+public class KafKaProducerService {
+	private static final Logger logger = LoggerFactory.getLogger(KafKaProducerService.class);
+
 	@Autowired
 	private KafkaTemplate<String, Object> kafkaTemplate;
 
-	public void sendMessage(String message) 
-	{
+	public void sendMessage(String message) {
 		logger.info(String.format("Message sent -> %s", message));
 		this.kafkaTemplate.send(AppConstants.TOPIC_NAME_TEST, message);
 	}
-	
-	public void saveCreateUserLog(User user) 
-	{
+
+	public void saveCreateUserLog(User user) {
 		logger.info(String.format("User created -> %s", user));
 		this.kafkaTemplate.send(AppConstants.TOPIC_NAME_USER_LOG, user);
 	}

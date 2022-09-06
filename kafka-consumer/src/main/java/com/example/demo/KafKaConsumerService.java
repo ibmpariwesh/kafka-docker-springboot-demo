@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import com.howtodoinjava.kafka.demo.model.User;
 
 @Service
-public class KafKaConsumerService 
-{
-	private final Logger logger 
-		= LoggerFactory.getLogger(KafKaConsumerService.class);
+public class KafKaConsumerService {
+	private final Logger logger = LoggerFactory.getLogger(KafKaConsumerService.class);
 
 	@KafkaListener(topics = AppConstants.TOPIC_NAME_USER_LOG, groupId = AppConstants.GROUP_ID)
-	public void consume(User user) {
-		//error
+	public String consume(User user) {
+		// write email code here
 		logger.info(String.format("received -> %s", user));
+//		throw new RuntimeException();
+		return "test";// ignored by message broker though it works
 	}
 }

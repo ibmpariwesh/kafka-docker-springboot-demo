@@ -26,7 +26,7 @@ public class KafkaProducerController {
 	}
 	
 	@PostMapping(value = "/createUser")
-	public void sendMessageToKafkaTopic(
+	public boolean sendMessageToKafkaTopic(
 			@RequestParam("userId") long userId, 
 			@RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName) {
@@ -35,7 +35,8 @@ public class KafkaProducerController {
 		user.setUserId(userId);
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
-		
+		System.out.println(user.getFirstName());
 		this.producerService.saveCreateUserLog(user);
+		return true;
 	}
 }
